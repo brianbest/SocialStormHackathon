@@ -9,11 +9,11 @@ var io = require('socket.io')(http);
 //var client = redis.createClient();
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/dis/index.html');
+  res.sendFile(__dirname + '/dist/index.html');
 });
 
-app.use("/styles", express.static(__dirname + '/dis/styles'));
-app.use("/scripts", express.static(__dirname + '/dis/scripts'));
+app.use("/styles", express.static(__dirname + '/dist/styles'));
+app.use("/scripts", express.static(__dirname + '/dist/scripts'));
 
 
 io.on('connection', function(socket){
