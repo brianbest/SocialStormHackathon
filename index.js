@@ -14,6 +14,8 @@ app.get('/', function(req, res){
 
 app.use("/styles", express.static(__dirname + '/app/styles'));
 app.use("/scripts", express.static(__dirname + '/app/scripts'));
+app.use("/elements", express.static(__dirname + '/app/elements'));
+app.use("/bower_components", express.static(__dirname + '/app/bower_components'));
 
 
 io.on('connection', function(socket){

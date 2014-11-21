@@ -14,28 +14,30 @@
   <!-- endbuild-->
 
   <script src="bower_components/platform/platform.js"></script>
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
   <!-- build:vulcanized elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
   <!-- endbuild-->
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font: 13px Helvetica, Arial; }
-    form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-    form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-    form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-    #messages { list-style-type: none; margin: 0; padding: 0; }
-    #messages li { padding: 5px 10px; }
-    #messages li:nth-child(odd) { background: #eee; }
-  </style>
+
 </head>
 
 <body unresolved>
 
-  <ul id="messages"></ul>
-  <form action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
-  </form>
+  <div class="messages_area">
+    <ul id="messages"></ul>
 
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+  </div>
+
+  <div class="menu_change">
+    <paper-tabs selected="0">
+      <paper-tab><i class="fa fa-file-text-o"></i></paper-tab>
+      <paper-tab><i style="color:#fff;" class="fa fa-paint-brush"></i></paper-tab>
+      <paper-tab><i style="color:#fff;" class="fa fa-microphone"></i></paper-tab>
+    </paper-tabs>
+  </div>
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
