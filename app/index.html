@@ -60,7 +60,7 @@
     });
     socket.on('chat message', function(msg){
       messageNum++;
-      $('#messages').append($('<li>').text(msg).attr('id',"m"+ messageNum).attr('onclick',"m"+ messageNum));
+      $('#messages').append($('<li>').text(msg).attr('id',"m"+ messageNum).attr('onclick',"sayMessage('m"+ messageNum+"')"));
     });
   </script>
   <!-- endbuild-->
