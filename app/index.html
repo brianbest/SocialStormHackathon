@@ -53,6 +53,7 @@
   <script>
     var socket = io();
     var messageNum = 0;
+    var myID = "";
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
@@ -64,6 +65,7 @@
     });
     socket.on('logon', function(sock){
      console.log(sock);
+      myID = sock;
     });
     socket.on('redirect', function(sock){
       window.location = "/roomFull.html";
