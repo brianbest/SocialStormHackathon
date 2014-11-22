@@ -76,8 +76,8 @@
   socket.on('chat message', function(info){
     messageNum++;
     $('#messages').append(
-      $('<div>').addClass(info.type).append($('<div class="dp_icon">')).append(
-        $('<div class="ent_msg">').append($('<p>').text(info.msg).attr('id',"m"+ messageNum))
+      $('<div>').addClass(info.type).append($('<div class="dp_icon">').append($('<i class="fa fa-volume-up fa-2x"></i>'))).append(
+        $('<div class="ent_msg">').append($('<p>').text(info.msg).attr('id',"m"+ messageNum).addClass(info.type))
       ).attr('onclick',"sayMessage('m"+ messageNum+"')")
     );
   });

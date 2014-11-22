@@ -67,9 +67,14 @@ paper-tab{
     .dp_icon{
       height: 50px;
       width: 50px;
+      margin-right: 2rem;
       border-radius: 1000px;
       background-color: $tutorColor;
       float: right;
+      i{
+        margin-top: 0.6rem;
+        margin-left: 0.6rem;
+      }
     }
     .ent_msg{
       float: right;
@@ -85,9 +90,14 @@ paper-tab{
     .dp_icon{
       height: 50px;
       width: 50px;
+      margin-left: 2rem;
       border-radius: 1000px;
       background-color: $studentColor;
       float: left;
+      i{
+        margin-top: 0.6rem;
+        margin-left: 0.6rem;
+      }
     }
     .ent_msg{
       float: left;

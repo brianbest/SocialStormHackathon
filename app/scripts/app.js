@@ -19,7 +19,13 @@ if (!('webkitSpeechRecognition' in window)) {
 function sayMessage(theID){
   console.log();
   var thisID = $("#"+theID).text();
-  var msg = new SpeechSynthesisUtterance(thisID);
+  var msg = new SpeechSynthesisUtterance();
+  msg.text = thisID;
+  var whoisThis = $("#"+theID).attr('class');
+  var voices = window.speechSynthesis.getVoices();
+  if (whoisThis == 'student'){
+    msg.voice = voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
+  }
   window.speechSynthesis.speak(msg);
 
 }
