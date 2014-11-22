@@ -52,13 +52,15 @@
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
     var socket = io();
+    var messageNum = 0;
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
       return false;
     });
     socket.on('chat message', function(msg){
-      $('#messages').append($('<li onclick="sayMessage()">').text(msg));
+      messageNum++;
+      $('#messages').append($('<li>').text(msg).attr('id',"m"+ messageNum).attr('onclick',"m"+ messageNum));
     });
   </script>
   <!-- endbuild-->
