@@ -22,56 +22,111 @@
 </head>
 
 <body unresolved>
-  <header>
-    <core-toolbar>
-      <core-icon-button icon="menu"></core-icon-button>
-      <span flex><h1>GEMS</h1></span>
-      <span flex><p>Connected to : person</p></span>
-    </core-toolbar>
-  </header>
+<header>
+  <core-toolbar>
+    <core-icon-button icon="menu"></core-icon-button>
+    <span flex><h1>GEMS</h1></span>
+    <span flex><p>Connected to : person</p></span>
+  </core-toolbar>
+</header>
 
-  <div class="messages_area">
-    <ul id="messages"></ul>
+<div class="messages_area">
+  <div id="messages"></div>
 
 
-  </div>
+</div>
 
-  <div class="menu_change">
-    <form action="">
-      <input id="m" autocomplete="off" /><button><i class="fa fa-share"></i></button>
-    </form>
-    <paper-tabs selected="0">
-      <paper-tab><i class="fa fa-comment fa-5x" "></i></paper-tab>
-      <paper-tab><i style="color:#fff;" class="fa fa-book fa-4x"></i></paper-tab>
-      <paper-tab><i style="color:#fff;" class="fa fa-pencil fa-4x"></i></paper-tab>
-    </paper-tabs>
-  </div>
-  <!-- build:js scripts/app.js -->
-  <script src="scripts/app.js"></script>
-  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-  <script>
-    var socket = io();
-    var messageNum = 0;
-    var myID = "";
-    $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
+<div class="menu_change">
+  <form action="">
+    <input id="m" autocomplete="off" /><button><i class="fa fa-share"></i></button>
+  </form>
+  <paper-tabs selected="0">
+    <paper-tab><i class="fa fa-comment fa-5x" "></i></paper-tab>
+    <paper-tab><i style="color:#fff;" class="fa fa-book fa-4x"></i></paper-tab>
+    <paper-tab><i style="color:#fff;" class="fa fa-pencil fa-4x"></i></paper-tab>
+  </paper-tabs>
+</div>
+
+<div class="whatAreYou">
+  <h3>You are a?</h3>
+  <button onclick="iama(1)">Student</button>
+  <button onclick="iama(2)">Teacher</button>
+</div>
+<!-- build:js scripts/app.js -->
+<script src="scripts/app.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  var socket = io();
+  var messageNum = 0;
+  var myID = "";
+  $('form').submit(function(){
+    var theMsg = $('#m').val();
+
+    var sendMsg = {
+      'id': myID,
+      'msg':theMsg
+    };
+
+    socket.emit('chat message', sendMsg);
+    $('#m').val('');
+    return false;
+  });
+
+  socket.on('chat message', function(info){
+    messageNum++;
+    $('#messages').append(
+      $('<div>').addClass(info.type).append($('<div class="dp_icon">')).append(
+        $('<div class="ent_msg">').append($('<p>').text(info.msg).attr('id',"m"+ messageNum))
+      ).attr('onclick',"sayMessage('m"+ messageNum+"')")
+    );
+  });
+
+  socket.on('logon', function(sock){
+    console.log(sock);
+    myID = sock;
+
+
+  });
+
+  //Kick user out if over 2 people in the room
+  socket.on('redirect', function(sock){
+    window.location = "/roomFull.html";
+  });
+
+  function iama(idVal){
+    if(idVal === 1){
+      var whatami = {
+        'id': myID,
+        'type': 'student'
+      };
+      socket.emit('iama', whatami);
+    }else{
+      var whatami = {
+        'id': myID,
+        'type': 'teacher'
+      };
+      socket.emit('iama', whatami);
+    }
+
+    $('.whatAreYou').remove();
+  }
+
+
+  //Search via the GET information on who the user is
+
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value;
     });
-    socket.on('chat message', function(msg){
-      messageNum++;
-      $('#messages').append($('<li>').text(msg).attr('id',"m"+ messageNum).attr('onclick',"sayMessage('m"+ messageNum+"')"));
-    });
-    socket.on('logon', function(sock){
-     console.log(sock);
-      myID = sock;
-    });
-    socket.on('redirect', function(sock){
-      window.location = "/roomFull.html";
-    });
-  </script>
-  <!-- endbuild-->
+    return vars;
+  }
+
+
+
+</script>
+<!-- endbuild-->
 </body>
 
 </html>

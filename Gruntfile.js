@@ -80,6 +80,18 @@ module.exports = function (grunt) {
           ext: '.css'
         }]
       },
+      app: {
+        options: {
+          style: 'compressed'
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          src: ['styles/{,*/}*.{scss,sass}', 'elements/{,*/}*.{scss,sass}'],
+          dest: '<%= yeoman.app %>',
+          ext: '.css'
+        }]
+      },
       server: {
         files: [{
           expand: true,

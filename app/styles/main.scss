@@ -47,6 +47,58 @@ paper-tab{
 
 //The student teacher select screen
 //
+
+.whatAreYou{
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+
+  button{
+    width: 3rem;
+    height: 2.25rem;
+  }
+}
+
+#messages{
+  .teacher{
+    overflow: auto;
+    .dp_icon{
+      height: 50px;
+      width: 50px;
+      border-radius: 1000px;
+      background-color: $tutorColor;
+      float: right;
+    }
+    .ent_msg{
+      float: right;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      p{text-align: right;}
+    }
+    &:after{clear:both;}
+  }
+
+  .student{
+    overflow: auto;
+    .dp_icon{
+      height: 50px;
+      width: 50px;
+      border-radius: 1000px;
+      background-color: $studentColor;
+      float: left;
+    }
+    .ent_msg{
+      float: left;
+      margin-left: 1rem;
+      margin-top: 1rem;
+      p{text-align: left;}
+    }
+    &:after{clear:both;}
+  }
+}
+
 //.selectClass_area{
 //  height: 80vh;
 //}
