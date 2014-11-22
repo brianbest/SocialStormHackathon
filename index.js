@@ -20,7 +20,13 @@ app.use("/bower_components", express.static(__dirname + '/app/bower_components')
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  io.emit('logon', socket);
+
+  //if the room is full then redirect user out
+  if (io.sockets.clients.length <= 1){
+    io.emit('redirect', 'stuff');
+  }
+
+
 
   socket.on("chat message", function(msg){
     //Print message to db

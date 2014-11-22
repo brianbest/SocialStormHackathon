@@ -65,6 +65,9 @@
     socket.on('logon', function(sock){
      console.log(sock);
     });
+    socket.on('redirect', function(sock){
+      window.location = "/roomFull.html";
+    });
   </script>
   <!-- endbuild-->
 </body>
