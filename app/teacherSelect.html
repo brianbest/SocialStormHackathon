@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>GEMS</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild-->
+
+  <script src="bower_components/platform/platform.js"></script>
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+  <!-- build:vulcanized elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements.html">
+  <!-- endbuild-->
+
+</head>
+
+<body unresolved>
+<header>
+  <core-toolbar>
+    <core-icon-button icon="menu"></core-icon-button>
+    <span flex><h1>GEMS</h1></span>
+    <span flex><p>Connected to : person</p></span>
+  </core-toolbar>
+</header>
+
+<div class="selectClass_area studentBG">
+  <ul id="classes">
+    <li>Math</li>
+    <li>Science</li>
+    <li>Communication</li>
+    <li>History</li>
+    <li>Health</li>
+  </ul>
+</div>
+
+<div class="menu_change">
+  <paper-tabs selected="0">
+    <paper-tab>Student</paper-tab>
+    <paper-tab><a onclick="changeColor()">Teacher</a></paper-tab>
+  </paper-tabs>
+</div>
+<!-- build:js scripts/app.js -->
+<script src="scripts/app.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  function changeColor(){
+    console.log('win');
+    $('.selectClass_area').addClass("studentToTeacher");
+  }
+</script>
+<!-- endbuild-->
+</body>
+
+</html>
