@@ -62,6 +62,9 @@
       messageNum++;
       $('#messages').append($('<li>').text(msg).attr('id',"m"+ messageNum).attr('onclick',"sayMessage('m"+ messageNum+"')"));
     });
+    socket.on('logon', function(sock){
+     console.log(sock);
+    });
   </script>
   <!-- endbuild-->
 </body>

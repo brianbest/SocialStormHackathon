@@ -20,15 +20,7 @@ app.use("/bower_components", express.static(__dirname + '/app/bower_components')
 
 io.on('connection', function(socket){
   console.log('a user connected');
-
-  ////Send user a list of stuff
-  ////holdingArry = getPast(client);
-  //socket.on("send past", function(msg){
-  //  //client.lrange(['mes1',0,-1], function (err, reply) {
-  //    io.emit('past messages', reply);
-  //  }, redis.print);
-  //});
-
+  io.emit('logon', socket);
 
   socket.on("chat message", function(msg){
     //Print message to db
