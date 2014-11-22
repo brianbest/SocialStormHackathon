@@ -16,8 +16,12 @@ if (!('webkitSpeechRecognition' in window)) {
 }
 
 
-function sayMessage(){
-  console.log(this.innerHTML);
+function sayMessage(theID){
+  console.log();
+  var thisID = theID;
+  var msg = new SpeechSynthesisUtterance(thisID);
+  window.speechSynthesis.speak(msg);
+
 }
 
 ////Brian's speech to text
