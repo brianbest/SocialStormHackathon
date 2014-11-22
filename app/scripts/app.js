@@ -18,7 +18,7 @@ if (!('webkitSpeechRecognition' in window)) {
 
 function sayMessage(theID){
   console.log();
-  var thisID = theID;
+  var thisID = $("#"+theID).text();
   var msg = new SpeechSynthesisUtterance(thisID);
   window.speechSynthesis.speak(msg);
 
