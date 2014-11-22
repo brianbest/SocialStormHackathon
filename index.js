@@ -22,15 +22,14 @@ io.on('connection', function(socket){
   console.log('a user connected');
 
   //if the room is full then redirect user out
-  if (io.sockets.clients.length <= 1){
+  var clientr = io.sockets.clients();
+  if (clientr.length <= 1){
     io.emit('redirect', 'stuff');
   }
 
 
 
   socket.on("chat message", function(msg){
-    //Print message to db
-    //client.rpush('mes1', msg, redis.print);
     io.emit('chat message', msg);
   });
   socket.on('disconnect',function(){
